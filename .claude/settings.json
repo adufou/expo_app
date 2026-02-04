@@ -1,10 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm install:*)",
-      "Bash(npm run type-check:*)",
-      "Bash(npm run format:check:*)",
-      "Bash(npm run format:*)"
+      "Bash(pnpm install:*)",
+      "Bash(pnpm run type-check:*)",
+      "Bash(pnpm run format:check:*)",
+      "Bash(pnpm run format:*)"
     ]
   }
 }
