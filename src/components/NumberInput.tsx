@@ -1,11 +1,12 @@
-import { useState, useCallback, useEffect } from 'react';
-import { TextInput, StyleSheet, TextInputProps } from 'react-native';
+import { useState, useCallback, useEffect } from 'react'
+import { TextInput, StyleSheet, TextInputProps } from 'react-native'
+import { colors } from '@/constants/colors'
 
 interface NumberInputProps extends Omit<TextInputProps, 'value' | 'onChangeText'> {
-  value: number;
-  onValueChange: (value: number) => void;
-  min?: number;
-  max?: number;
+  value: number
+  onValueChange: (value: number) => void
+  min?: number
+  max?: number
 }
 
 export function NumberInput({
@@ -15,29 +16,29 @@ export function NumberInput({
   max = Number.MAX_SAFE_INTEGER,
   style,
   ...props
-}: NumberInputProps) {
-  const [inputValue, setInputValue] = useState(String(value));
+}: NumberInputProps): React.JSX.Element {
+  const [inputValue, setInputValue] = useState(String(value))
 
   useEffect(() => {
-    setInputValue(String(value));
-  }, [value]);
+    setInputValue(String(value))
+  }, [value])
 
   const handleChangeText = useCallback((text: string) => {
     if (text === '' || text === '-' || /^-?\d*$/.test(text)) {
-      setInputValue(text);
+      setInputValue(text)
     }
-  }, []);
+  }, [])
 
   const commitValue = useCallback(() => {
-    const parsed = parseInt(inputValue, 10);
+    const parsed = parseInt(inputValue, 10)
     if (!isNaN(parsed)) {
-      const clamped = Math.min(Math.max(parsed, min), max);
-      onValueChange(clamped);
-      setInputValue(String(clamped));
+      const clamped = Math.min(Math.max(parsed, min), max)
+      onValueChange(clamped)
+      setInputValue(String(clamped))
     } else {
-      setInputValue(String(value));
+      setInputValue(String(value))
     }
-  }, [inputValue, min, max, onValueChange, value]);
+  }, [inputValue, min, max, onValueChange, value])
 
   return (
     <TextInput
@@ -51,7 +52,7 @@ export function NumberInput({
       selectTextOnFocus
       {...props}
     />
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -59,13 +60,13 @@ const styles = StyleSheet.create({
     fontSize: 48,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#1C1C1E',
+    color: colors.text,
     paddingVertical: 16,
     paddingHorizontal: 24,
     borderWidth: 2,
-    borderColor: '#E5E5EA',
+    borderColor: colors.border,
     borderRadius: 12,
     minWidth: 150,
-    backgroundColor: '#F2F2F7',
+    backgroundColor: colors.background,
   },
-});
+})

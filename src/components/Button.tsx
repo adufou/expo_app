@@ -6,13 +6,14 @@ import {
   StyleProp,
   ViewStyle,
   TextStyle,
-} from 'react-native';
+} from 'react-native'
+import { colors } from '@/constants/colors'
 
 interface ButtonProps extends TouchableOpacityProps {
-  title: string;
-  variant?: 'primary' | 'secondary';
-  style?: StyleProp<ViewStyle>;
-  textStyle?: StyleProp<TextStyle>;
+  title: string
+  variant?: 'primary' | 'secondary'
+  style?: StyleProp<ViewStyle>
+  textStyle?: StyleProp<TextStyle>
 }
 
 export function Button({
@@ -22,7 +23,7 @@ export function Button({
   textStyle,
   disabled,
   ...props
-}: ButtonProps) {
+}: ButtonProps): React.JSX.Element {
   return (
     <TouchableOpacity
       style={[
@@ -46,12 +47,12 @@ export function Button({
         {title}
       </Text>
     </TouchableOpacity>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#007AFF',
+    backgroundColor: colors.primary,
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 8,
@@ -60,23 +61,23 @@ const styles = StyleSheet.create({
     minWidth: 80,
   },
   buttonSecondary: {
-    backgroundColor: 'transparent',
+    backgroundColor: colors.transparent,
     borderWidth: 1,
-    borderColor: '#007AFF',
+    borderColor: colors.primary,
   },
   buttonDisabled: {
-    backgroundColor: '#C7C7CC',
-    borderColor: '#C7C7CC',
+    backgroundColor: colors.disabled,
+    borderColor: colors.disabled,
   },
   text: {
-    color: '#FFFFFF',
+    color: colors.white,
     fontSize: 16,
     fontWeight: '600',
   },
   textSecondary: {
-    color: '#007AFF',
+    color: colors.primary,
   },
   textDisabled: {
-    color: '#8E8E93',
+    color: colors.disabledText,
   },
-});
+})

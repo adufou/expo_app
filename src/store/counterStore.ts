@@ -1,21 +1,21 @@
-import { create } from 'zustand';
+import { create } from 'zustand'
 
 interface CounterState {
-  count: number;
+  count: number
 }
 
 interface CounterActions {
-  increment: () => void;
-  decrement: () => void;
-  setCount: (value: number) => void;
-  reset: () => void;
+  increment: () => void
+  decrement: () => void
+  setCount: (value: number) => void
+  reset: () => void
 }
 
-type CounterStore = CounterState & CounterActions;
+type CounterStore = CounterState & CounterActions
 
 const initialState: CounterState = {
   count: 0,
-};
+}
 
 export const useCounterStore = create<CounterStore>((set) => ({
   ...initialState,
@@ -24,4 +24,4 @@ export const useCounterStore = create<CounterStore>((set) => ({
   decrement: () => set((state) => ({ count: state.count - 1 })),
   setCount: (value: number) => set({ count: value }),
   reset: () => set(initialState),
-}));
+}))
