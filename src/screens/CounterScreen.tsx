@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Button } from '../components/Button';
 import { NumberInput } from '../components/NumberInput';
-import { useCounterStore } from '../store';
+import { useCounterStore } from '../store/counterStore';
 
 export function CounterScreen() {
   const count = useCounterStore((state) => state.count);
