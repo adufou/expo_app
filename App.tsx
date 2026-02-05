@@ -1,5 +1,5 @@
-import { CounterScreen } from './src/screens/CounterScreen'
+import { Text } from 'react-native'
 
 export default function App(): React.JSX.Element {
-  return <CounterScreen />
+  return <Text>Hello World</Text>
 }
