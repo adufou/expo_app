@@ -9,7 +9,10 @@
       "WebFetch(domain:github.com)",
       "Bash(pnpm lint:*)",
       "Bash(pnpm type-check:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "WebFetch(domain:tamagui.dev)",
+      "Bash(git mv:*)",
+      "Bash(pnpm eslint:*)"
     ]
   }
 }
