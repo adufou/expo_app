@@ -6,6 +6,30 @@
 - Tamagui (styling, themes, variants)
 - Custom Design System: `src/modules/design-system/`
 
+## Package Manager
+- **pnpm** — use `pnpm` for all install/add/remove commands (never npm/yarn)
+- `.npmrc`: `node-linker=hoisted` (required for Expo/RN compatibility)
+
+## Major Dependencies
+| Category | Package | Version |
+|---|---|---|
+| Framework | expo | ~54 (SDK 54) |
+| UI Runtime | react-native | 0.81 |
+| Web | react-native-web | 0.21 |
+| React | react / react-dom | 19.1 |
+| Styling | tamagui / @tamagui/core | 2.0.0-rc.4 |
+| i18n | i18next + react-i18next | 25 / 16 |
+| Testing | vitest + @testing-library/react-native | 4 / 13 |
+| Linting | eslint + prettier | 9 / 3 |
+| Git hooks | husky + lint-staged | 9 / 16 |
+
+## Scripts
+- `pnpm start` — start Expo dev server
+- `pnpm test` / `pnpm test:watch` — run tests (vitest)
+- `pnpm lint` / `pnpm lint:fix` — ESLint
+- `pnpm format` / `pnpm format:check` — Prettier
+- `pnpm type-check` — TypeScript (`tsc --noEmit`)
+
 ## Design System — Critical Rules
 
 1. **Total isolation**: the DS never imports anything from `src/` (no services, stores, navigation, or app config)
