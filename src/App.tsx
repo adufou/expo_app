@@ -40,8 +40,6 @@ export default function App(): React.JSX.Element {
           value={count}
           onChangeText={setCount}
           placeholder={t('app.numberInputPlaceholder')}
-          keyboardType="numeric"
-          inputMode="numeric"
           width={200}
           marginBottom={24}
         />
