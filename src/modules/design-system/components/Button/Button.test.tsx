@@ -1,6 +1,5 @@
 /* eslint-disable react-native/no-raw-text */
 
-import { describe, it, expect } from 'vitest'
 import { render } from '@testing-library/react-native'
 import { TamaguiProvider } from 'tamagui'
 import { config } from '@/modules/design-system/config'

@@ -4,7 +4,6 @@ import tseslint from 'typescript-eslint'
 import reactPlugin from 'eslint-plugin-react'
 import reactHooksPlugin from 'eslint-plugin-react-hooks'
 import reactNativePlugin from 'eslint-plugin-react-native'
-import vitestPlugin from '@vitest/eslint-plugin'
 import eslintConfigPrettier from 'eslint-config-prettier'
 
 /* global URL */
@@ -84,6 +83,7 @@ export default tseslint.config(
       '**/ios/**',
       '**/coverage/**',
       'babel.config.js',
+      'jest.config.js',
       'metro.config.js',
     ],
   },
@@ -140,25 +140,6 @@ export default tseslint.config(
       'react-native/no-raw-text': 'error',
       'react-native/no-single-element-style-arrays': 'error',
       'react-native/split-platform-components': 'error',
-    },
-  },
-
-  // Vitest rules for test files
-  {
-    files: ['src/**/__tests__/**/*.test.{ts,tsx}', 'src/**/*.test.{ts,tsx}'],
-    plugins: {
-      vitest: vitestPlugin,
-    },
-    rules: {
-      ...vitestPlugin.configs.recommended.rules,
-      'vitest/consistent-test-filename': [
-        'error',
-        {
-          pattern: '.*\\.test\\.ts(x)?$',
-          allTestPattern: '.*\\.test\\.ts(x)?$',
-        },
-      ],
-      'vitest/no-conditional-in-test': 'error',
     },
   },
 

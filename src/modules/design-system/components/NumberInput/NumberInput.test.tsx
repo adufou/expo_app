@@ -1,4 +1,3 @@
-import { describe, it, expect, vi } from 'vitest'
 import { render, fireEvent } from '@testing-library/react-native'
 import { TamaguiProvider } from 'tamagui'
 import { config } from '@/modules/design-system/config'
@@ -24,7 +23,7 @@ describe('NumberInput', () => {
   })
 
   it('filters non-numeric characters', () => {
-    const handleChange = vi.fn()
+    const handleChange = jest.fn()
     const { getByTestId } = render(
       <TamaguiProvider config={config} defaultTheme="light">
         <NumberInput testID="input" onChangeText={handleChange} />
@@ -36,7 +35,7 @@ describe('NumberInput', () => {
   })
 
   it('calls onChangeText with empty string when input is all non-numeric', () => {
-    const handleChange = vi.fn()
+    const handleChange = jest.fn()
     const { getByTestId } = render(
       <TamaguiProvider config={config} defaultTheme="light">
         <NumberInput testID="input" onChangeText={handleChange} />
