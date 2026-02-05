@@ -1,8 +1,12 @@
+import '@/i18n'
+
 import { useState } from 'react'
 import { useColorScheme } from 'react-native'
+import { useTranslation } from 'react-i18next'
 import { TamaguiProvider, config, Box, Text, Button, ButtonText, NumberInput, Switch } from '@ds'
 
 export default function App(): React.JSX.Element {
+  const { t } = useTranslation()
   const colorScheme = useColorScheme()
   const [count, setCount] = useState('')
   const [enabled, setEnabled] = useState(false)
@@ -17,25 +21,25 @@ export default function App(): React.JSX.Element {
         backgroundColor="$background"
       >
         <Text variant="title" marginBottom={24}>
-          Design System
+          {t('app.title')}
         </Text>
 
         <Text variant="body" color="$colorMuted" marginBottom={32}>
-          {colorScheme} theme active
+          {t('app.themeActive', { theme: colorScheme })}
         </Text>
 
         <Button variant="primary" size="md" marginBottom={12}>
-          <ButtonText variant="primary">Primary Button</ButtonText>
+          <ButtonText variant="primary">{t('app.primaryButton')}</ButtonText>
         </Button>
 
         <Button variant="secondary" size="sm" marginBottom={32}>
-          <ButtonText variant="secondary">Secondary Button</ButtonText>
+          <ButtonText variant="secondary">{t('app.secondaryButton')}</ButtonText>
         </Button>
 
         <NumberInput
           value={count}
           onChangeText={setCount}
-          placeholder="Enter a number"
+          placeholder={t('app.numberInputPlaceholder')}
           keyboardType="numeric"
           inputMode="numeric"
           width={200}
@@ -43,7 +47,7 @@ export default function App(): React.JSX.Element {
         />
 
         <Box flexDirection="row" alignItems="center" gap={12}>
-          <Text variant="body">Toggle</Text>
+          <Text variant="body">{t('app.toggle')}</Text>
           <Switch checked={enabled} onCheckedChange={setEnabled}>
             <Switch.Thumb />
           </Switch>

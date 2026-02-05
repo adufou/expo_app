@@ -1,0 +1,10 @@
+{
+  "app": {
+    "title": "Design System",
+    "themeActive": "{{theme}} theme active",
+    "primaryButton": "Primary Button",
+    "secondaryButton": "Secondary Button",
+    "numberInputPlaceholder": "Enter a number",
+    "toggle": "Toggle"
+  }
+}
