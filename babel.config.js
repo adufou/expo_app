@@ -8,7 +8,7 @@ module.exports = function (api) {
         {
           alias: {
             '@': './src',
-            '@ds': './src/components/design-system',
+            '@ds': './src/modules/design-system',
           },
         },
       ],
@@ -16,7 +16,7 @@ module.exports = function (api) {
         '@tamagui/babel-plugin',
         {
           components: ['tamagui'],
-          config: './src/components/design-system/config/tamagui.config.ts',
+          config: './src/modules/design-system/config/tamagui.config.ts',
         },
       ],
     ],

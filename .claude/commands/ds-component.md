@@ -2,7 +2,7 @@
 description: Scaffold a new Design System component with full structure (component, types, tests, barrel exports)
 ---
 
-Create a new Design System component named `$ARGUMENTS` in `src/components/design-system/components/`.
+Create a new Design System component named `$ARGUMENTS` in `src/modules/design-system/components/`.
 
 > **`$ARGUMENTS` must be PascalCase** (e.g., `Button`, `FormField`, `IconButton`).
 
@@ -11,7 +11,7 @@ Before starting, read the `ds-architecture` skill to understand conventions.
 ## Structure to create
 
 ```
-src/components/design-system/components/$ARGUMENTS/
+src/modules/design-system/components/$ARGUMENTS/
 ├── $ARGUMENTS.tsx
 ├── $ARGUMENTS.test.tsx
 └── index.ts
@@ -19,7 +19,7 @@ src/components/design-system/components/$ARGUMENTS/
 
 ## Steps
 
-1. **Create the folder** `src/components/design-system/components/$ARGUMENTS/`
+1. **Create the folder** `src/modules/design-system/components/$ARGUMENTS/`
 
 2. **Create `$ARGUMENTS.tsx`** with:
    - Import `styled` from `@tamagui/core`
@@ -40,12 +40,12 @@ src/components/design-system/components/$ARGUMENTS/
    export type { ${ARGUMENTS}Props } from './$ARGUMENTS'
    ```
 
-5. **Update the barrel export** in `src/components/design-system/components/index.ts`:
+5. **Update the barrel export** in `src/modules/design-system/components/index.ts`:
    ```typescript
    export { $ARGUMENTS } from './$ARGUMENTS'
    ```
 
-6. **Update the public export** in `src/components/design-system/index.ts`:
+6. **Update the public export** in `src/modules/design-system/index.ts`:
    ```typescript
    export { $ARGUMENTS } from './components/$ARGUMENTS'
    export type { ${ARGUMENTS}Props } from './components/$ARGUMENTS'

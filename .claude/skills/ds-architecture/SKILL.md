@@ -1,6 +1,6 @@
 ---
 name: ds-architecture
-description: Architecture and conventions for the custom Design System (Tamagui + React Native). Read before working in src/components/design-system/.
+description: Architecture and conventions for the custom Design System (Tamagui + React Native). Read before working in src/modules/design-system/.
 ---
 
 # Design System — Full Architecture
@@ -31,7 +31,7 @@ Tamagui is an **implementation detail**. The DS exposes its own API:
 ## Directory Structure
 
 ```
-src/components/design-system/
+src/modules/design-system/
 │
 ├── index.ts                        # Public entry point — ONLY import path for consumers
 │
@@ -186,7 +186,7 @@ Components use `$primary`, `$background`, etc. — **never** raw tokens directly
 
 ## Barrel Export (root index.ts)
 
-`src/components/design-system/index.ts` is the ONLY entry point:
+`src/modules/design-system/index.ts` is the ONLY entry point:
 
 ```typescript
 // Config & Provider
@@ -221,8 +221,8 @@ export type { ButtonProps } from './components/Button'
 {
   "compilerOptions": {
     "paths": {
-      "@ds":  ["./src/components/design-system/index.ts"],
-      "@ds/*": ["./src/components/design-system/*"]
+      "@ds":  ["./src/modules/design-system/index.ts"],
+      "@ds/*": ["./src/modules/design-system/*"]
     }
   }
 }

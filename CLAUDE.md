@@ -4,7 +4,7 @@
 - React Native (Expo) + React Native Web
 - TypeScript strict
 - Tamagui (styling, themes, variants)
-- Custom Design System: `src/components/design-system/`
+- Custom Design System: `src/modules/design-system/`
 
 ## Design System — Critical Rules
 
@@ -16,7 +16,7 @@
 ## DS Structure (summary)
 
 ```
-src/components/design-system/
+src/modules/design-system/
 ├── index.ts          # Single public export
 ├── tokens/           # Raw values (colors, spacing, typography, radii, shadows, animations)
 ├── themes/           # light.ts, dark.ts, types.ts
@@ -29,7 +29,7 @@ src/components/design-system/
 
 ## Available Skills
 
-- **ds-architecture** — Full technical decisions, detailed structure, and conventions. Read this skill BEFORE modifying anything in `src/components/design-system/`.
+- **ds-architecture** — Full technical decisions, detailed structure, and conventions. Read this skill BEFORE modifying anything in `src/modules/design-system/`.
 
 ## Commands
 
