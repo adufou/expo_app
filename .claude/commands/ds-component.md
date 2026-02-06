@@ -22,14 +22,16 @@ src/modules/design-system/components/$ARGUMENTS/
 1. **Create the folder** `src/modules/design-system/components/$ARGUMENTS/`
 
 2. **Create `$ARGUMENTS.tsx`** with:
-   - Import `styled` from `@tamagui/core`
-   - Import `GetProps` for type inference
-   - A styled Frame using Tamagui (variants, sizes, states as needed)
+   - Use `forwardRef` for the component
+   - Use `StyleSheet.create` for static styles
+   - Use `useTheme()` from `@/modules/design-system/hooks/useTheme` for theme colors
+   - Use `useMemo` for composing theme-dependent styles
+   - Use `Pressable` for interactive components (supports hover/press states)
    - Export the component AND its Props type
-   - Use semantic tokens (`$primary`, `$background`, etc.) — never raw tokens
-   - If variants exceed ~30 lines, extract them into `$ARGUMENTS.variants.ts`
+   - Use theme values (`theme.primary`, `theme.background`, etc.) — never raw color tokens directly in styles
 
 3. **Create `$ARGUMENTS.test.tsx`** with:
+   - Wrap renders with `<ThemeProvider defaultTheme="light">` from `@/modules/design-system/config`
    - Basic render test
    - One test per variant
    - State tests (disabled, pressed, focused) if applicable
@@ -55,6 +57,8 @@ src/modules/design-system/components/$ARGUMENTS/
 
 - [ ] Component does not import anything from `src/` outside the DS
 - [ ] Props are typed and exported
-- [ ] Semantic tokens are used (no hardcoded values)
+- [ ] Theme colors are used via `useTheme()` (no hardcoded colors)
+- [ ] Static styles use `StyleSheet.create`
+- [ ] Dynamic/theme styles use `useMemo`
 - [ ] Barrel export and root index are updated
 - [ ] Tests pass
