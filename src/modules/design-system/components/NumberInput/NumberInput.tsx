@@ -1,49 +1,68 @@
-import { forwardRef } from 'react'
-import { styled, GetProps, Input, TamaguiElement } from 'tamagui'
+import { forwardRef, useState, useCallback, useMemo } from 'react'
+import { TextInput, StyleSheet, Platform } from 'react-native'
+import type { TextInputProps } from 'react-native'
 import { spacing } from '@/modules/design-system/tokens/spacing'
 import { radii } from '@/modules/design-system/tokens/radii'
 import { typography } from '@/modules/design-system/tokens/typography'
+import { useTheme } from '@/modules/design-system/hooks/useTheme'
 
-const StyledNumberInput = styled(Input, {
-  name: 'NumberInput',
-  paddingHorizontal: spacing[3],
-  paddingVertical: spacing[2],
-  borderWidth: 1,
-  borderColor: '$borderColor',
-  borderRadius: radii.md,
-  backgroundColor: '$background',
-  color: '$color',
-  fontSize: typography.fontSize.body,
+export type NumberInputProps = TextInputProps & {
+  disabled?: boolean
+}
 
-  focusStyle: {
-    borderColor: '$borderColorFocus',
-  },
+export const NumberInput = forwardRef<TextInput, NumberInputProps>(
+  ({ onChangeText, disabled = false, style, onFocus, onBlur, ...rest }, ref) => {
+    const theme = useTheme()
+    const [focused, setFocused] = useState(false)
 
-  variants: {
-    disabled: {
-      true: {
-        backgroundColor: '$backgroundDisabled',
-        opacity: 0.5,
-        cursor: 'not-allowed',
+    const handleChangeText = useCallback(
+      (text: string): void => {
+        onChangeText?.(text.replace(/[^0-9]/g, ''))
       },
-    },
-  } as const,
-})
+      [onChangeText],
+    )
 
-export type NumberInputProps = GetProps<typeof StyledNumberInput>
+    const handleFocus = useCallback(
+      (...args: Parameters<NonNullable<TextInputProps['onFocus']>>) => {
+        setFocused(true)
+        onFocus?.(...args)
+      },
+      [onFocus],
+    )
 
-export const NumberInput = forwardRef<TamaguiElement, NumberInputProps>(
-  ({ onChangeText, ...rest }, ref): React.JSX.Element => {
-    const handleChangeText = (text: string): void => {
-      onChangeText?.(text.replace(/[^0-9]/g, ''))
-    }
+    const handleBlur = useCallback(
+      (...args: Parameters<NonNullable<TextInputProps['onBlur']>>) => {
+        setFocused(false)
+        onBlur?.(...args)
+      },
+      [onBlur],
+    )
+
+    const resolvedStyle = useMemo(
+      () => [
+        styles.base,
+        {
+          borderColor: focused ? theme.borderColorFocus : theme.borderColor,
+          backgroundColor: disabled ? theme.backgroundDisabled : theme.background,
+          color: theme.color,
+        },
+        disabled && styles.disabled,
+        Platform.OS === 'web' && disabled && ({ cursor: 'not-allowed' } as unknown as object),
+        style,
+      ],
+      [focused, disabled, theme, style],
+    )
 
     return (
-      <StyledNumberInput
+      <TextInput
         ref={ref}
         keyboardType="numeric"
         inputMode="numeric"
+        editable={!disabled}
         onChangeText={handleChangeText}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        style={resolvedStyle}
         {...rest}
       />
     )
@@ -51,3 +70,16 @@ export const NumberInput = forwardRef<TamaguiElement, NumberInputProps>(
 )
 
 NumberInput.displayName = 'NumberInput'
+
+const styles = StyleSheet.create({
+  base: {
+    paddingHorizontal: spacing[3],
+    paddingVertical: spacing[2],
+    borderWidth: 1,
+    borderRadius: radii.md,
+    fontSize: typography.fontSize.body,
+  },
+  disabled: {
+    opacity: 0.5,
+  },
+})

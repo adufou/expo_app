@@ -1,6 +1,5 @@
-// Config & Provider
-export { config } from '@/modules/design-system/config'
-export { TamaguiProvider } from 'tamagui'
+// Provider
+export { ThemeProvider } from '@/modules/design-system/config'
 
 // Tokens (advanced usage)
 export { colors, spacing, typography, radii } from '@/modules/design-system/tokens'

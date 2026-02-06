@@ -1,27 +1,36 @@
-import { styled, GetProps, Text as TamaguiText } from 'tamagui'
+import { forwardRef, useMemo } from 'react'
+import { Text as RNText, StyleSheet } from 'react-native'
+import type { TextProps as RNTextProps } from 'react-native'
 import { typography } from '@/modules/design-system/tokens/typography'
+import { useTheme } from '@/modules/design-system/hooks/useTheme'
 
-export const Text = styled(TamaguiText, {
-  name: 'Text',
-  color: '$color',
-  fontSize: typography.fontSize.body,
-  lineHeight: typography.lineHeight.body,
-  fontWeight: typography.fontWeight.regular,
+type TextVariant = 'title' | 'body'
 
-  variants: {
-    variant: {
-      title: {
-        fontSize: typography.fontSize.title,
-        lineHeight: typography.lineHeight.title,
-        fontWeight: typography.fontWeight.bold,
-      },
-      body: {},
-    },
-  } as const,
+export type TextProps = RNTextProps & {
+  variant?: TextVariant
+}
 
-  defaultVariants: {
-    variant: 'body',
+const variantStyles = StyleSheet.create({
+  title: {
+    fontSize: typography.fontSize.title,
+    lineHeight: typography.lineHeight.title,
+    fontWeight: typography.fontWeight.bold,
+  },
+  body: {
+    fontSize: typography.fontSize.body,
+    lineHeight: typography.lineHeight.body,
+    fontWeight: typography.fontWeight.regular,
   },
 })
 
-export type TextProps = GetProps<typeof Text>
+export const Text = forwardRef<RNText, TextProps>(({ variant = 'body', style, ...rest }, ref) => {
+  const theme = useTheme()
+  const resolvedStyle = useMemo(
+    () => [{ color: theme.color }, variantStyles[variant], style],
+    [theme.color, variant, style],
+  )
+
+  return <RNText ref={ref} style={resolvedStyle} {...rest} />
+})
+
+Text.displayName = 'Text'

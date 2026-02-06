@@ -1,10 +1,6 @@
 const { getDefaultConfig } = require('expo/metro-config')
-const { withTamagui } = require('@tamagui/metro-plugin')
 
 /** @type {import('expo/metro-config').MetroConfig} */
 const config = getDefaultConfig(__dirname)
 
-module.exports = withTamagui(config, {
-  components: ['tamagui'],
-  config: './src/modules/design-system/config/tamagui.config.ts',
-})
+module.exports = config

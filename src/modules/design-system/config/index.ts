@@ -1,1 +1,1 @@
-export { config } from '@/modules/design-system/config/tamagui.config'
+export { ThemeProvider } from '@/modules/design-system/config/ThemeProvider'

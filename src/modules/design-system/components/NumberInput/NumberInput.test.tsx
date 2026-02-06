@@ -1,23 +1,22 @@
 import { render, fireEvent } from '@testing-library/react-native'
-import { TamaguiProvider } from 'tamagui'
-import { config } from '@/modules/design-system/config'
+import { ThemeProvider } from '@/modules/design-system/config'
 import { NumberInput } from '@/modules/design-system/components/NumberInput/NumberInput'
 
 describe('NumberInput', () => {
   it('renders without crashing', () => {
     const { getByTestId } = render(
-      <TamaguiProvider config={config} defaultTheme="light">
+      <ThemeProvider defaultTheme="light">
         <NumberInput testID="input" />
-      </TamaguiProvider>,
+      </ThemeProvider>,
     )
     expect(getByTestId('input')).toBeDefined()
   })
 
   it('applies disabled state', () => {
     const { getByTestId } = render(
-      <TamaguiProvider config={config} defaultTheme="light">
+      <ThemeProvider defaultTheme="light">
         <NumberInput disabled testID="input" />
-      </TamaguiProvider>,
+      </ThemeProvider>,
     )
     expect(getByTestId('input')).toBeDefined()
   })
@@ -25,9 +24,9 @@ describe('NumberInput', () => {
   it('filters non-numeric characters', () => {
     const handleChange = jest.fn()
     const { getByTestId } = render(
-      <TamaguiProvider config={config} defaultTheme="light">
+      <ThemeProvider defaultTheme="light">
         <NumberInput testID="input" onChangeText={handleChange} />
-      </TamaguiProvider>,
+      </ThemeProvider>,
     )
 
     fireEvent.changeText(getByTestId('input'), 'abc123def')
@@ -37,9 +36,9 @@ describe('NumberInput', () => {
   it('calls onChangeText with empty string when input is all non-numeric', () => {
     const handleChange = jest.fn()
     const { getByTestId } = render(
-      <TamaguiProvider config={config} defaultTheme="light">
+      <ThemeProvider defaultTheme="light">
         <NumberInput testID="input" onChangeText={handleChange} />
-      </TamaguiProvider>,
+      </ThemeProvider>,
     )
 
     fireEvent.changeText(getByTestId('input'), 'abcdef')

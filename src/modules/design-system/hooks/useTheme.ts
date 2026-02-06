@@ -1,6 +1,6 @@
-import { useTheme as useTamaguiTheme } from 'tamagui'
 import type { ThemeTokens } from '@/modules/design-system/themes/types'
+import { useThemeContext } from '@/modules/design-system/config/ThemeProvider'
 
 export function useTheme(): ThemeTokens {
-  return useTamaguiTheme() as unknown as ThemeTokens
+  return useThemeContext().theme
 }

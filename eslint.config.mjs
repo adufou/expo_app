@@ -82,6 +82,7 @@ export default tseslint.config(
       '**/android/**',
       '**/ios/**',
       '**/coverage/**',
+      'nul/**',
       'babel.config.js',
       'jest.config.js',
       'metro.config.js',

@@ -1,7 +1,11 @@
-import { styled, GetProps, View } from 'tamagui'
+import { forwardRef } from 'react'
+import { View } from 'react-native'
+import type { ViewProps } from 'react-native'
 
-export const Box = styled(View, {
-  name: 'Box',
+export type BoxProps = ViewProps
+
+export const Box = forwardRef<View, BoxProps>((props, ref) => {
+  return <View ref={ref} {...props} />
 })
 
-export type BoxProps = GetProps<typeof Box>
+Box.displayName = 'Box'
